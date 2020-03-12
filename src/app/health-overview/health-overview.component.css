@@ -1,0 +1,23 @@
+
+  .example-card {
+      max-width: 400px;
+      box-shadow: 0 0px 1px -1px rgba(0,0,0,1), 0 1px 2px 0 rgba(0,0,0,1), 0 1px 3px 0 rgba(0,0,0,1);
+  }
+
+  .mat-card-header .mat-card-title {
+    /* CSS styles go here */
+    font-size: 23px;
+    font-family: arial;
+  }
+  .right-dots{
+    position: absolute;
+    right: 14px;
+}
+
+.left-drag{
+    position: absolute;
+    left: 5px;
+    color:lightgray;
+}
+
+  

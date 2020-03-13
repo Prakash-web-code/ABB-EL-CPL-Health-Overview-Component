@@ -1,0 +1,37 @@
+{
+    "data": [
+            {
+    "headerTitle": "Health Overview",
+    "chartValue": "150",
+    "subTitle": "Total Assets",
+    "chartData": [  {
+    "name": "120 Active",
+    "value": 86,
+    "color": "#0CA919"
+       },
+      {
+         "name": "3 Warnings",
+         "value": 8,
+        "color": "#FF7300"
+          },
+      {
+        "name": "1 Critical",
+        "value": 1,
+        "color": "#F03040"
+         },
+        {
+        "name": "26 Inactive",
+        "value": 5,
+        "color": "#DBDBDB"
+                                                                                }                                                                        
+      ],
+     "name": "Assets Sharing",
+    "ABBVoice": "Planned Service",
+    "ABBVoice0": "Current Year",
+    "ABBVoice1": "Current Month",
+    "ABBVoice2": "23",
+    "ABBVoice3": "70",
+    "ABBVoice4": "3"
+            }
+        ]
+    }

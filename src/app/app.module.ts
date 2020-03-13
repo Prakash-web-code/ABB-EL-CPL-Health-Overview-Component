@@ -1,3 +1,4 @@
+import {  HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
@@ -21,7 +22,8 @@ import { HealthOverviewComponent } from './health-overview/health-overview.compo
     MatCardModule,
     MatMenuModule,
     MatIconModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

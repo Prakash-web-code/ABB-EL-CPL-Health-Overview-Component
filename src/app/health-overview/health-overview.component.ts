@@ -1,28 +1,34 @@
 import { Component, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
-
+// import { IDonut } from'./health-overview-interface';
+import { RestApiService } from'./health-overview-service';
 @Component({
   selector: 'app-health-overview',
   templateUrl: './health-overview.component.html',
   styleUrls: ['./health-overview.component.css']
 })
 export class HealthOverviewComponent implements OnInit {
-  healthTitle = 'Health Overview';
 
-  constructor() { }
+  errorMessage: any;
+  chartOptions: any;
+  Donut: any;
+  constructor(private DonutService: RestApiService) { }
   highcharts = Highcharts;
- 
-  chartOptions = {   
+  getHighChart(chartValue: any): void {
+  this.chartOptions = {   
      chart : {
       backgroundColor: null,
         plotBorderWidth: null,
         plotBackgroundColor: null,
         plotShadow: false,
-        height: 400,
-        width: 390
+        height: 320,
+        width: 320,
+        style: {
+          margin: "auto"
+      }
      },
      title : {
-        text: '150',
+        text: chartValue.data[0].chartValue,
         align: 'center',
         verticalAlign: 'middle',
         y: 20,
@@ -35,7 +41,7 @@ export class HealthOverviewComponent implements OnInit {
     },   
      },
      subtitle: {
-      text: 'Total assets',
+      text: chartValue.data[0].subTitle,
       align: 'center',
         verticalAlign: 'middle',
         y: 25,
@@ -72,52 +78,34 @@ export class HealthOverviewComponent implements OnInit {
       layout: 'vertical',
       align: 'right',
       verticalAlign: 'top',
-      y: 100,
-      x: 20,
+      y: 80,
+      x: 16,
       symbolHeight: 8,
       symbolWidth: 8,
       symbolRadius: 0
   },
      series : [{
       colorByPoint: true,
-      data: [{
-        name: '120 Active',
-        y: 86,
-        color: '#0CA919',
-      }, {
-        name: '3 Warnings',
-        y: 8,
-        color: '#FF7300',
-      }, {
-        name: '1 Critical',
-        y: 1,
-        color: '#F03040',
-      }, {
-        name: '26 Inactive',
-        y: 5,
-        color: '#DBDBDB',
-      }],
+      data:
+          chartValue.data[0].chartData.map(val => {
+            return { name: val.name, y: val.value, color:val.color }
+          }),
       type: 'pie',
-       name: 'Browser share',
-       innerSize: '84%', 
+       name: chartValue.data[0].name,
+       innerSize: '86%', 
       showInLegend: true,
      }],
-     responsive: {
-      rules: [{
-          condition: {
-              maxWidth: 250
-          },
-          chartOptions: {
-              legend: {
-                  align: 'center',
-                  verticalAlign: 'bottom',
-                  layout: 'horizontal'
-              }
-          }
-      }]
-  }
+
+    }
   };
   ngOnInit(): void {
+    this.DonutService.getData().subscribe({
+      next: Donut => {
+        this.Donut = Donut
+      this.getHighChart(Donut)
+      },
+      error: err => this.errorMessage = err
+    });
   }
 
 }
